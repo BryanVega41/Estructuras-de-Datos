@@ -33,14 +33,13 @@ struct Cola * atender (struct Cola * cola){
 		return NULL;
 	}
 	if(cola -> frente == -1 || cola -> atras == -1){
-		//printf("\nNo hay nadie en la cola");
 		return cola;
 	}
-	/*if(cola -> frente == cola -> atras){
+	if(cola -> frente == cola -> atras){
 		cola ->  frente = -1;
 		cola -> atras = -1;
 		return cola;
-	}*/
+	}
 	if(cola -> frente ==  9){
 		cola -> frente = 0;
 		return cola;
@@ -67,20 +66,21 @@ struct Cola * mostrar(struct Cola * cola){
 	if(aux2<aux1){
 		i = aux1;
 		do{
-			printf("%d, ", cola -> cola[i]);
+			printf("%d ", cola -> cola[i]);
 			i++;
-		}while(i != 9);
+		}while(i <= 9);
 		aux1 = 0;
-		for( i = aux1 ; i = aux2 ; i++){
-			printf("%d, ", cola -> cola[i]);
-		}
+		do{
+			printf("%d ", cola -> cola[i]);
+			i++;
+		}while(i <= aux2);
 		return cola;
 	}else{
 		i=aux1;
 		do{
-			printf("%d, ", cola -> cola[i]);
+			printf("%d ", cola -> cola[i]);
 			i++;
-		}while(i<=aux2);
+		}while(i <= aux2);
 		printf("\n");
 		return cola;
 	}
@@ -147,16 +147,20 @@ int main (void){
 					scanf("%d",&b);
 					printf("\nQue prioridad tiene?\n");
 					scanf("%d",&c);
+					printf("\n");
 					if(c == 1){
 						formar(C1,b);
+						printf("\nCola de prioridad 1 :\n");
 						mostrar(C1);
 					}
 					if(c == 2){
 						formar(C2,b);
+						printf("\nCola de prioridad 2 :\n");
 						mostrar(C2);
 					}
 					if(c == 3){
 						formar(C3,b);
+						printf("\nCola de prioridad 3 :\n");
 						mostrar(C3);
 					}
 					break;
@@ -164,16 +168,20 @@ int main (void){
 					orden(C1,C2,C3);
 					break;
 				case 3:
-					printf("\nLe recordamos que el cero representa 'vacio'");
+					//printf("\nLe recordamos que el cero representa 'vacio'");
 					printf("\nQue cola desea mostrar? Le recordamos que estan ordenadas por prioridades\n");
 					scanf("%d",&c);
+					printf("\n");
 					if(c == 1){
+						printf("\nCola de prioridad 1 :\n");
 						mostrar(C1);
 					}
 					if(c == 2){
+						printf("\nCola de prioridad 2 :\n");
 						mostrar(C2);
 					}
 					if(c == 3){
+						printf("\nCola de prioridad 3 :\n");
 						mostrar(C3);
 					}
 					break;

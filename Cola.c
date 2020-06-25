@@ -8,20 +8,19 @@ struct Cola {
 };
 
 struct Cola * formar (struct Cola * cola, int dato){
-	if (cola==NULL){
+	if (cola == NULL){
 		return NULL;
-	}
-	if(cola -> frente == -1 && cola -> atras == -1){
+	}else if(cola -> frente == -1 && cola -> atras == -1){
 		cola -> cola[0] = dato;
 		cola -> frente = (cola -> frente) + 1;
 		cola -> atras = (cola -> atras) + 1;
 		return cola;
 	}else if(cola -> atras ==  9 && cola -> frente == 0 || cola -> atras == ((cola ->frente)-1)){
-		printf("\nLa cola esta llena, atienda a uno y vuelva a intentarlo");
+		printf("\nLa cola esta llena, atienda a uno y vuelva a intentarlo\n");
 		return cola;
 	}else{
 		int posicion = 0;
-		posicion =  ((cola -> atras)+1) %  10;
+		posicion =  ((cola -> atras)+1) % 10;
 		cola -> cola[posicion] = dato;
 		cola -> atras = posicion;
 		return cola;
@@ -33,7 +32,7 @@ struct Cola * atender (struct Cola * cola){
 		return NULL;
 	}
 	if(cola -> frente == -1 || cola -> atras == -1){
-		//printf("\nNo hay nadie en la cola");
+		//printf("\nNo hay nadie en la cola\n");
 		return cola;
 	}
 	if(cola -> frente == cola -> atras){
@@ -54,41 +53,42 @@ struct Cola * mostrar(struct Cola * cola){
 	
 	if(cola == NULL){
 		return NULL;
-	}
-	if(cola -> frente == -1 || cola -> atras == -1){
+	}else if(cola -> frente == -1 || cola -> atras == -1){
 		printf("\nNo hay nadie en la cola\n");
 		return cola;
 	}
 	
 	int aux1 = cola -> frente;
 	int aux2 = cola -> atras;
-	int i = 0;
+	int i = NULL;
 	
 	if(aux2<aux1){
 		i = aux1;
 		do{
-			printf("%d, ", cola -> cola[i]);
+			printf("%d ", cola -> cola[i]);
 			i++;
-		}while(i != 9);
-		aux1 = 0;
-		for( i = aux1 ; i = aux2 ; i++){
-			printf("%d, ", cola -> cola[i]);
-		}
+		}while(i <= 9);
+		i = 0;
+		do{
+			printf("%d ", cola -> cola[i]);
+			i++;
+		}while(i <= aux2);
 		return cola;
 	}else{
-		i=aux1;
+		i = aux1;
 		do{
-			printf("%d, ", cola -> cola[i]);
+			printf("%d ", cola -> cola[i]);
 			i++;
-		}while(i<=aux2);
+		}while(i <= aux2);
 		return cola;
 	}
+	printf("\n");
 }
 
 struct Cola * crear (struct Cola * cola){
 	cola = (struct Cola *) malloc (sizeof(struct Cola));
 	if (cola == NULL){
-		printf("\n No jalo jaja \n");
+		printf("\n No hay esapcio\n");
 		return NULL;
 	}
 	cola -> frente = -1;
@@ -117,13 +117,16 @@ int main (void){
 					printf("\nA quien desea formar?\n");
 					scanf("%d",&b);
 					formar(cola,b);
+					printf("\n");
 					mostrar(cola);
 					break;
 				case 2:
 					atender(cola);
+					printf("\n");
 					mostrar(cola);
 					break;
 				case 3:
+					printf("\n");
 					mostrar(cola);
 					break;
 				case 4:

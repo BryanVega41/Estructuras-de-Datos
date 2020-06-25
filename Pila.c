@@ -10,7 +10,7 @@ struct Pila * crear (struct Pila * pila){
 	
 	pila = (struct Pila *) malloc (sizeof(struct Pila));
 	if (pila == NULL){
-		printf("\nNo hay espacio");
+		printf("\nNo hay espacio\n");
 		return NULL;
 	}
 	
@@ -24,7 +24,7 @@ struct Pila * push (struct Pila * pila, int dato){
 	}
 	
 	if(pila -> tope == 9){
-		printf("\nNo hay espacio en la pila");
+		printf("\nNo hay espacio en la pila\n");
 		return pila;
 	}else{
 		(pila -> tope)++;
@@ -50,12 +50,13 @@ void mostrar (struct Pila * pila){
 		}
 		t = pila -> tope;
 		for( j = 0 ; j <= pila -> tope ; j++){
-			printf(", %d", aux -> pila[j]);
+			printf("%d ", aux -> pila[j]);
 			pila -> pila[j] = aux -> pila[t];
 			t--;
 		}
 		free(aux);
 	}
+	printf("\n");
 }
 
 struct Pila * pop (struct Pila * pila){
@@ -64,7 +65,7 @@ struct Pila * pop (struct Pila * pila){
 	}
 	
 	if(pila -> tope == -1){
-		printf("\nNo hay ningun elemento en la pila");
+		printf("\nNo hay ningun elemento en la pila\n");
 	}else if (pila -> tope == 0){
 		pila -> tope = -1;
 	}else{
@@ -84,10 +85,10 @@ struct Pila * invertir (struct Pila * pila){
 	int i = 0;
 	
 	for(i = 0 ; i <= pila -> tope ; i++ ){
-		aux -> pila [i] = pila -> pila[i];
-		printf("%d ", aux -> pila[i]);
+		aux -> pila [i] = pila -> pila[t-i];
+		//printf("%d ", aux -> pila[i]);
 	}
-	return pila;
+	return aux;
 }
 
 int main (void){
@@ -107,18 +108,19 @@ int main (void){
 		
 		switch(a){
 			case 1:
+				printf("\n");
 				mostrar(pila);
 				break;
 			case 2:
 				printf("\nQue elemento desea agregar?\n");
 				scanf("%d", &b);
-				push(pila,b);
+				pila = push(pila,b);
 				break;
 			case 3:
-				pop(pila);
+				pila = pop(pila);
 				break;
 			case 4:
-				invertir(pila);
+				pila = invertir(pila);
 				break;
 		}
 		
